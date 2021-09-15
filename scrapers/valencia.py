@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
+
 from course import Course
+
 
 def scrape_valencia():
     response = requests.get(
@@ -28,11 +30,13 @@ def scrape_valencia():
 
     for row in table.find_all('tr', recursive=False):
         if row_cursor % 3 == 0:
-            course = Course("", "")
+            course = Course('', '', '')
             cell_cursor = 0
             for cell in row.find_all('td', recursive=False):
                 if cell_cursor == 0:
                     course.course_code = cell.find('strong').string
+                elif cell_cursor == 1:
+                    course.crn = cell.string
                 elif cell_cursor == 3:
                     course.instructor = cell.string
                 cell_cursor += 1
