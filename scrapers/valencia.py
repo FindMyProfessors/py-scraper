@@ -7,8 +7,6 @@ def scrape_valencia():
         'https://valenciacollege.edu/academics/schedule-search/search.php?term=202210&INSM%5B%5D=N&INSM%5B%5D=M&INSM%5B%5D=X&INSM%5B%5D=S&Campus=&course_desc=&crn=',
         headers={
             'Connection': 'keep-alive',
-            # 'Pragma': 'no-cache',
-            'Cache-Control': 'max-age=100000000000',
             'Upgrade-Insecure-Requests': '1',
             'Origin': 'https://valenciacollege.edu',
             'Content-Type': 'application/x-www-form-urlencoded',
