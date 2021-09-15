@@ -1,15 +1,20 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import json
 
 import confuse
 
+from course import Course
 from scrapers.university_of_central_florida import scrape_university_of_central_florida
 from scrapers.valencia import scrape_valencia
 
 scrapersDictionary = {'valencia': scrape_valencia,
                       'university-of-central-florida': scrape_university_of_central_florida}
+
+
+class MyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Course):
+            return {'crn': obj.crn, 'course_code': obj.course_code, 'instructor': obj.instructor}
+        return json.JSONEncoder.default(self, obj)
 
 if __name__ == '__main__':
     config = confuse.Configuration('school_scraper', __name__)
@@ -18,4 +23,4 @@ if __name__ == '__main__':
     for key, value in config["schools"].items():
         print(value["enabled"])
         if value["enabled"].get(bool):
-            print(scrapersDictionary[key]())
+            print(json.dumps(scrapersDictionary[key](), cls=MyEncoder))
