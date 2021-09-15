@@ -5,8 +5,11 @@
 
 import confuse
 
+from scrapers.university_of_central_florida import scrape_university_of_central_florida
 from scrapers.valencia import scrape_valencia
-scrapersDictionary = {'valencia': scrape_valencia}
+
+scrapersDictionary = {'valencia': scrape_valencia,
+                      'university-of-central-florida': scrape_university_of_central_florida}
 
 if __name__ == '__main__':
     config = confuse.Configuration('school_scraper', __name__)

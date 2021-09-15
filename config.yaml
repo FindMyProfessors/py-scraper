@@ -1,3 +1,5 @@
 schools:
   valencia:
     enabled: true
+  university-of-central-florida:
+    enabled: true
