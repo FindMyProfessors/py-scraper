@@ -4,6 +4,7 @@ import requests
 
 from course import Course
 
+
 def scrape_university_of_central_florida():
     courses = []
     # https://cdl.ucf.edu/support/student/modalities/
@@ -13,6 +14,7 @@ def scrape_university_of_central_florida():
         else:
             courses[0:0] = scrape_endpoint(mode)
     return courses
+
 
 def scrape_endpoint(mode):
     return parse(requests.get(

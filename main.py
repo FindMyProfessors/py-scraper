@@ -16,6 +16,7 @@ class MyEncoder(json.JSONEncoder):
             return {'crn': obj.crn, 'course_code': obj.course_code, 'instructor': obj.instructor}
         return json.JSONEncoder.default(self, obj)
 
+
 if __name__ == '__main__':
     config = confuse.Configuration('school_scraper', __name__)
     config.set_file('config.yaml', base_for_paths=True)
