@@ -36,7 +36,7 @@ def scrape_valencia():
                 if cell_cursor == 0:
                     course.course_code = cell.find('strong').string
                 elif cell_cursor == 1:
-                    course.crn = cell.string
+                    course.crn = cell.contents[0]
                 elif cell_cursor == 3:
                     course.instructor = cell.string
                 cell_cursor += 1
