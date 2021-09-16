@@ -20,8 +20,10 @@ class MyEncoder(json.JSONEncoder):
 if __name__ == '__main__':
     config = confuse.Configuration('school_scraper', __name__)
     config.set_file('config.yaml', base_for_paths=True)
-
+    result = {}
     for key, value in config["schools"].items():
         print(value["enabled"])
         if value["enabled"].get(bool):
-            print(json.dumps(scrapersDictionary[key](), cls=MyEncoder))
+            data = scrapersDictionary[key]()
+            result[key] = data
+    print(json.dumps(result, cls=MyEncoder))
