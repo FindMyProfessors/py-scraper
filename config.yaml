@@ -1,5 +1,19 @@
 schools:
   valencia:
-    enabled: true
+    enabled: enabled
+    locations:
+      florida:
+        east-and-west: 1544
+        downtown: 17862
+        lake-nona: 16828
+        poinciana: 17341
+        winter-park: 13626
+        osceola: 13651
   university-of-central-florida:
     enabled: true
+    locations:
+      florida:
+        orlando: 1082
+        gainesville: 15516
+        daytona-beach: 5567
+        cocoa: 5400
