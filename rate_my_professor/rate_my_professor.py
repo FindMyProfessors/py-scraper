@@ -5,9 +5,8 @@ import requests
 from professor import Professor
 
 
-def start_scraping():
-    scrape(0, [], '')
-
+def start_scraping(school_id):
+    return scrape(school_id, [], '')
 
 def scrape(school_id, professors, cursor):
     url = 'https://www.ratemyprofessors.com/graphql'
@@ -15,10 +14,10 @@ def scrape(school_id, professors, cursor):
                              headers={'Authorization': 'Basic dGVzdDp0ZXN0'},
                              json={
                                  'query': "query NewSearch($first: Int!, $last: Int!, $cursor: String!){newSearch{teachers(query:{text:\"\",schoolID:\"U2Nob29sLTEzNjUx\"} first: $first last: $last, after: $cursor) {edges {node {id firstName lastName numRatings avgRatingRounded wouldTakeAgainPercentRounded }} pageInfo {hasNextPage endCursor}}}}",
-                                 'variables': {'first': 500, 'last': 500, 'cursor': cursor}
+                                 'variables': {'first': 1000, 'last': 1000, 'cursor': cursor}
                              })
     nextProfessors, endCursor, hasNextPage = parse(response.content)
-    professors.append(nextProfessors)
+    professors.extend(nextProfessors)
 
     print(endCursor)
     print(hasNextPage)
